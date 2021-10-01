@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.math.BigInteger;
 
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class Usuarios {
 
     @Id
@@ -27,6 +27,28 @@ public class Usuarios {
 
     @Column(name = "usuario")
     private String usuario;
+
+    public Usuarios() {
+    }
+
+    public Usuarios(BigInteger cedulaUsuario, String emailUsuario, String nombreUsuario, String usuario, String password) {
+        this.cedulaUsuario = cedulaUsuario;
+        this.emailUsuario = emailUsuario;
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+        this.usuario = usuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuarios{" +
+                "cedulaUsuario=" + cedulaUsuario +
+                ", emailUsuario='" + emailUsuario + '\'' +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", password='" + password + '\'' +
+                ", usuario='" + usuario + '\'' +
+                '}';
+    }
 
     public BigInteger getCedulaUsuario() {
         return cedulaUsuario;

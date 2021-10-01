@@ -1,5 +1,6 @@
 package com.market.app.marketAPI.services;
 
+import com.market.app.marketAPI.dto.UsuarioRequestDTO;
 import com.market.app.marketAPI.entity.Usuarios;
 import com.market.app.marketAPI.repository.interfaces.IUsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,27 +25,24 @@ public class UsuariosService {
         return usuariosRepository.findById(id);
     }
 
-    public boolean create(Usuarios usuario) {
-        usuariosRepository.save(usuario);
-        return true;
-        //TODO: GET BY ID TO VERIFY USER HAS CREATED
+    public Usuarios create(UsuarioRequestDTO usuario) {
+        return usuariosRepository.save(usuario.toEntity(usuario));
     }
 
-    public boolean update(Usuarios newUser, BigInteger id) {
-        Usuarios oldUser = usuariosRepository.findById(id).orElse(null);
+    public Usuarios update(Usuarios newUser, BigInteger id) {
+        Usuarios actualUser = usuariosRepository.findById(id).orElse(null);
+        if (actualUser == null){
+            return null;
+        }
+        actualUser.setUsuario(newUser.getUsuario());
+        actualUser.setEmailUsuario(newUser.getEmailUsuario());
+        actualUser.setNombreUsuario(newUser.getNombreUsuario());
+        actualUser.setPassword(newUser.getPassword());
 
-        oldUser.setUsuario(newUser.getUsuario());
-        oldUser.setEmailUsuario(newUser.getEmailUsuario());
-        oldUser.setNombreUsuario(newUser.getNombreUsuario());
-        oldUser.setPassword(newUser.getPassword());
-
-        usuariosRepository.save(oldUser);
-        return true;
+        return usuariosRepository.save(actualUser);
     }
 
-    public boolean delete(BigInteger id) {
+    public void delete(BigInteger id) {
         usuariosRepository.deleteById(id);
-        return true;
-        //TODO: GET BY ID TO VERIFY USER HAS BEEN DELETED
     }
 }
