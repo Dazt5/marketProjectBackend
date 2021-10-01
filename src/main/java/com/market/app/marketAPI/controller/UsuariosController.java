@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import static com.market.app.marketAPI.utils.Constants.SucessfullMessages.*;
+import static com.market.app.marketAPI.utils.Constants.SuccessfulMessages.*;
 import static com.market.app.marketAPI.utils.Constants.ErrorMessages.*;
 
 import java.math.BigInteger;

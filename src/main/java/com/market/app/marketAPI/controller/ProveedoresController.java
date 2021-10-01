@@ -6,7 +6,7 @@ import com.market.app.marketAPI.entity.Proveedores;
 import com.market.app.marketAPI.services.ProveedoresService;
 
 import static com.market.app.marketAPI.utils.Constants.ErrorMessages.*;
-import static com.market.app.marketAPI.utils.Constants.SucessfullMessages.*;
+import static com.market.app.marketAPI.utils.Constants.SuccessfulMessages.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

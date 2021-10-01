@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.market.app.marketAPI.utils.Constants.ErrorMessages.*;
-import static com.market.app.marketAPI.utils.Constants.SucessfullMessages.*;
+import static com.market.app.marketAPI.utils.Constants.SuccessfulMessages.*;
 
 @CrossOrigin
 @RestController

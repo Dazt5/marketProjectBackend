@@ -2,7 +2,7 @@ package com.market.app.marketAPI.utils;
 
 public final class Constants {
 
-    public static final class SucessfullMessages{
+    public static final class SuccessfulMessages {
 
         public static final String MESSAGE_RESOURCE_CREATED = "Registro creado satisfactoriamente";
         public static final String MESSAGE_RESOURCE_UPDATED = "Registro actualizado satisfactoriamente";
@@ -16,7 +16,10 @@ public final class Constants {
         public static final String MESSAGE_INTERNAL_SERVER_ERROR = "ERROR INTERNO EN EL SERVIDOR EXCEPCIÓN DE TIPO: ";
     }
 
-
-
+    public static final class JWTConfig{
+        public static final String AUTHORIZATION_HEADER_NAME = "Authorization";
+        public static final String BEARER_PREFIX_HEADER = "Bearer ";
+        public static final String SECRET = "MySecretSuperSecret";
+    }
 }
 
