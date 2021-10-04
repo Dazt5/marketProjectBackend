@@ -61,7 +61,7 @@ public class ProveedoresController {
         }
     }
 
-    @PutMapping("/{id")
+    @PutMapping("/{id}")
     public ResponseEntity<GeneralResponseDTO> updateProveedorById(@PathVariable BigInteger id, @RequestBody @Valid ProveedoresRequestDTO proveedor) {
         try {
             Proveedores updateProveedor = proveedoresService.update(proveedor.toEntity(), id);
