@@ -18,7 +18,7 @@ public class JWTManager {
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList("ROLE_ADMIN");
 
-        String token = Jwts
+        return Jwts
                 .builder()
                 .setId("SIGNEDJWT")
                 .setSubject(username)
@@ -30,7 +30,5 @@ public class JWTManager {
                 .setExpiration(new Date(System.currentTimeMillis() + 600000))
                 .signWith(SignatureAlgorithm.HS512,
                         SECRET.getBytes()).compact();
-
-        return "Bearer " + token;
     }
 }
