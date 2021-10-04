@@ -1,19 +1,19 @@
 /********** CHANGELOG ***********
 
 -- V2: agregadas REFERENCIAL ACTIONS a las tablas con llaves foraneas, agregados atributos de prueba, agregadas SELECT QUERIES para cada tabla.
-
+-- V3: agregada la codificación UTF8 al crear la base de datos.
 ***********/
 
 
 DROP DATABASE IF EXISTS tienda_generica; /*Elimina la bdd si existe asi evitar errores*/
 
-CREATE DATABASE tienda_generica; /*Vuelve a crear la base de datos*/
+CREATE DATABASE tienda_generica CHARACTER SET utf8 collate utf8_general_ci; /*Vuelve a crear la base de datos*/
 
 USE tienda_generica; 
 
 DROP TABLE IF EXISTS clientes,usuarios,proveedores,productos,ventas, detalle_ventas; /*Elimina las tablas si existen para evitar errores*/
 
-/*Creación de las tablas.*/
+/* Creación de las tablas. */
 
 CREATE TABLE clientes(
 	cedula_cliente BIGINT PRIMARY KEY,
@@ -83,11 +83,11 @@ SHOW TABLES;
 ************* Datos de prueba, descomentarlo y ejecutar estos query para insertar datos de prueba ****************** */
 
 /*
+INSERT INTO usuarios(cedula_usuario, email_usuario, nombre_usuario, password, usuario)
+VALUES(123456789, "usuario@usuario.com", "administrador","password","admin");
+
 INSERT INTO clientes(cedula_cliente, direccion_cliente, email_cliente, nombre_cliente, telefono_cliente)
 VALUES (112233445,"San antonio","david.alvarez@valid.com","David Alvarez","3026241411");
-
-INSERT INTO usuarios(cedula_usuario, email_usuario, nombre_usuario, password, usuario)
-VALUES(123456789, "usuario@usuario.com", "administrador","admin","password");
 
 INSERT INTO proveedores(nitproveedor, ciudad_proveedor, direccion_proveedor, nombre_proveedor, telefono_proveedor)
 VALUES(987654321,"Bogotá","Calle 150", "VALID S.A", "3025555555");
@@ -104,12 +104,10 @@ VALUES(1,1,5,99,3500,4000,500);
 
 /*******  SELECT QUERYS ********/
 
-
-
 /*
-SELECT * FROM clientes;
-
 SELECT * FROM usuarios;
+
+SELECT * FROM clientes;
 
 SELECT * FROM proveedores;
 
@@ -118,4 +116,5 @@ SELECT * FROM productos;
 SELECT * FROM ventas;
 
 SELECT * FROM detalle_ventas;
+
 */
