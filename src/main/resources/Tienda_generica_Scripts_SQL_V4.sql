@@ -2,6 +2,7 @@
 
 -- V2: agregadas REFERENCIAL ACTIONS a las tablas con llaves foraneas, agregados atributos de prueba, agregadas SELECT QUERIES para cada tabla.
 -- V3: agregada la codificación UTF8 al crear la base de datos.
+-- V4: Agregada consulta SQL para obtener la lista de productos obteniendo el nombre del proveedor y no su NIT.
 ***********/
 
 
@@ -104,11 +105,7 @@ VALUES(1,1,5,99,3500,4000,500);
 
 /*******  SELECT QUERYS ********/
 
-SELECT * FROM productos;
-
-
-
-/* GET PRODUCT QUERY*/
+/* GET PRODUCT QUERY REPLACING NITPROVEEDOR_FK TO NOMBRE_PROVEEDOR */
 SELECT codigo_producto,ivacompra,proveedores.nombre_proveedor,nombre_producto,precio_compra,precio_venta FROM productos INNER JOIN proveedores ON productos.nitproveedor = proveedores.nitproveedor;
 
 /*
