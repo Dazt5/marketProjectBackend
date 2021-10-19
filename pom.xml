@@ -12,7 +12,7 @@
 	<artifactId>marketAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>marketAPI</name>
-	<description>com.</description>
+	<description>Api to control Market API Project</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -68,6 +68,13 @@
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20160810</version>
+		</dependency>
+
+		<!-- MAVEN PLUGIN-->
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-clean-plugin</artifactId>
+			<version>3.1.0</version>
 		</dependency>
 
 	</dependencies>
