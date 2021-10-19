@@ -3,10 +3,7 @@ package com.market.app.marketAPI.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.market.app.marketAPI.entity.Productos;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class ProductosRequestDTO {
@@ -16,7 +13,7 @@ public class ProductosRequestDTO {
 
     @NotNull(message = "Debe ingresar un iva")
     @JsonProperty("ivacompra")
-    private BigDecimal ivacompra;
+    private Double ivacompra;
 
     @NotNull(message = "Debe seleccionar un proveedor")
     @JsonProperty("nitproveedor")
@@ -28,11 +25,11 @@ public class ProductosRequestDTO {
 
     @NotNull(message = "Debe ingresar el precio de compra")
     @JsonProperty("precio_compra")
-    private BigDecimal precio_compra;
+    private Double precio_compra;
 
     @NotNull(message = "Debe ingresar el precio de venta")
     @JsonProperty("precio_venta")
-    private BigDecimal precio_venta;
+    private Double precio_venta;
 
     public Productos toEntity(){
         return new Productos(
@@ -53,11 +50,11 @@ public class ProductosRequestDTO {
         this.codigo_producto = codigo_producto;
     }
 
-    public BigDecimal getIvacompra() {
+    public Double getIvacompra() {
         return ivacompra;
     }
 
-    public void setIvacompra(BigDecimal ivacompra) {
+    public void setIvacompra(Double ivacompra) {
         this.ivacompra = ivacompra;
     }
 
@@ -77,19 +74,19 @@ public class ProductosRequestDTO {
         this.nombre_producto = nombre_producto;
     }
 
-    public BigDecimal getPrecio_compra() {
+    public Double getPrecio_compra() {
         return precio_compra;
     }
 
-    public void setPrecio_compra(BigDecimal precio_compra) {
+    public void setPrecio_compra(Double precio_compra) {
         this.precio_compra = precio_compra;
     }
 
-    public BigDecimal getPrecio_venta() {
+    public Double getPrecio_venta() {
         return precio_venta;
     }
 
-    public void setPrecio_venta(BigDecimal precio_venta) {
+    public void setPrecio_venta(Double precio_venta) {
         this.precio_venta = precio_venta;
     }
 }
