@@ -3,6 +3,7 @@
 -- V2: agregadas REFERENCIAL ACTIONS a las tablas con llaves foraneas, agregados atributos de prueba, agregadas SELECT QUERIES para cada tabla.
 -- V3: agregada la codificación UTF8 al crear la base de datos.
 -- V4: Agregada consulta SQL para obtener la lista de productos obteniendo el nombre del proveedor y no su NIT.
+-- V5: Agregato autoincrement para la PK ventas y detalleVentas
 ***********/
 
 
@@ -52,7 +53,7 @@ CREATE TABLE productos(
 );
 
 CREATE TABLE ventas(
-	codigo_venta BIGINT PRIMARY KEY,
+	codigo_venta BIGINT PRIMARY KEY AUTO_INCREMENT,
     cedula_cliente BIGINT,
     cedula_usuario BIGINT,
     ivaventa DOUBLE NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE ventas(
 );
 
 CREATE TABLE detalle_ventas(
-	codigo_detalle_venta BIGINT PRIMARY KEY,
+	codigo_detalle_venta BIGINT PRIMARY KEY AUTO_INCREMENT,
     cantidad_producto INT NOT NULL,
     codigo_producto BIGINT,
     codigo_venta BIGINT,
@@ -80,10 +81,10 @@ CREATE TABLE detalle_ventas(
 
 SHOW TABLES;
 
-/* 
-************* Datos de prueba, descomentarlo y ejecutar estos query para insertar datos de prueba ****************** */
+/************** Datos de prueba, descomentarlo y ejecutar estos query para insertar datos de prueba *******************/
 
 /*
+
 INSERT INTO usuarios(cedula_usuario, email_usuario, nombre_usuario, password, usuario)
 VALUES(123456789, "usuario@usuario.com", "administrador","password","admin");
 
@@ -104,15 +105,38 @@ VALUES(1,1,5,99,3500,4000,500);
 */
 
 /*******  SELECT QUERYS ********/
-
 /* GET PRODUCT QUERY REPLACING NITPROVEEDOR_FK TO NOMBRE_PROVEEDOR */
 SELECT codigo_producto,ivacompra,proveedores.nombre_proveedor,nombre_producto,precio_compra,precio_venta FROM productos INNER JOIN proveedores ON productos.nitproveedor = proveedores.nitproveedor;
 
-/*
-SELECT * FROM clientes;
+/*GET VENTA RENPLACING CEDULA_CLIENTE Y CEDULA_USUARIO*/
+SELECT codigo_venta, clientes.nombre_cliente, usuarios.nombre_usuario,valor_venta,ivaventa,total_venta FROM ventas INNER JOIN clientes ON ventas.cedula_cliente = clientes.cedula_cliente INNER JOIN usuarios ON ventas.cedula_usuario = usuarios.cedula_usuario;
+
+/*Detalle de ventas por cliente*/
+SELECT codigo_venta, clientes.nombre_cliente, usuarios.nombre_usuario,valor_venta,ivaventa,total_venta FROM ventas
+INNER JOIN clientes ON ventas.cedula_cliente = clientes.cedula_cliente INNER JOIN usuarios ON ventas.cedula_usuario = usuarios.cedula_usuario WHERE ventas.cedula_cliente="29523249"; 
+
+CREATE TABLE ventas(
+	codigo_venta BIGINT PRIMARY KEY AUTO_INCREMENT,
+    cedula_cliente BIGINT,
+    cedula_usuario BIGINT,
+    ivaventa DOUBLE NOT NULL,
+    total_venta DOUBLE NOT NULL,
+    valor_venta DOUBLE NOT NULL,
+    CONSTRAINT fk_cliente FOREIGN KEY (cedula_cliente) REFERENCES clientes(cedula_cliente)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_usuario FOREIGN KEY (cedula_usuario) REFERENCES usuarios(cedula_usuario)
+	ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+/* GET SELLINGDETAILS REPLACING CODIGO_VENTA AND CÓDIGO PRODUCTO*/
+SELECT codigo_detalle_venta,codigo_venta,productos.nombre_producto,cantidad_producto,valor_venta,valorIva,valor_total FROM detalle_ventas INNER JOIN productos ON detalle_ventas.codigo_producto = productos.codigo_producto;
+
 SELECT * FROM usuarios;
+SELECT * FROM clientes;
 SELECT * FROM proveedores;
 SELECT * FROM productos;
 SELECT * FROM ventas;
 SELECT * FROM detalle_ventas;
-*/
+
+DELETE FROM ventas WHERE codigo_venta=1;
+ALTER TABLE ventas AUTO_INCREMENT = 0;
